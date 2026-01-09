@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>지구 온난화 심화 현상 분석 보고서</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;700;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+            background-color: #F3F4F6; /* Cool Gray Background */
+            color: #1F2937;
+        }
+        /* Chart Container Standards */
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px; /* max-w-xl equivalent */
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 350px;
+            }
+        }
+        /* Custom Utilities for Visuals without SVG */
+        .icon-box {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            font-size: 30px;
+            background: linear-gradient(135deg, #3B82F6 0%, #1E40AF 100%);
+            color: white;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+        .metric-card {
+            transition: transform 0.2s;
+        }
+        .metric-card:hover {
+            transform: translateY(-5px);
+        }
+    </style>
+    <!-- 
+    Palette Name: Fire & Ice (Vibrant Blue & Warning Red)
+    Colors: 
+    - Deep Blue: #1E3A8A
+    - Bright Blue: #3B82F6
+    - Warning Red: #EF4444
+    - Danger Orange: #F97316
+    - Text Dark: #1F2937
+    -->
+    <!--
+    Narrative Plan:
+    1. Hook: The "Temperature Leap" of 2023.
+    2. Drivers: GHG Concentration Trends (CO2 & CH4).
+    3. Consequence: Temperature Trajectory.
+    4. Link: Correlation Analysis.
+    5. Action: Strategic Recommendations.
+    -->
+    <!-- 
+    Visualization Choices (NO SVG):
+    1. 2023 Leap: HTML/CSS Big Number Card (Goal: Inform).
+    2. CO2 Trend: Chart.js Line Chart (Goal: Change).
+    3. CH4 Trend: Chart.js Line Chart (Goal: Change).
+    4. Temp History: Chart.js Bar Chart with Highlight (Goal: Change/Compare).
+    5. Correlation: Chart.js Scatter Plot (Goal: Relationship).
+    6. Recommendations: HTML Grid Layout (Goal: Organize).
+    -->
+    <!-- NEITHER Mermaid JS NOR SVG were used anywhere in the output. -->
+</head>
+<body class="bg-gray-100">
+
+    <!-- Header Section -->
+    <header class="bg-gradient-to-r from-blue-900 to-blue-700 text-white py-12 px-4 shadow-lg">
+        <div class="max-w-6xl mx-auto text-center">
+            <h1 class="text-3xl md:text-5xl font-black mb-4 tracking-tight">기후 위기 가속화: 2023년의 경고</h1>
+            <p class="text-xl md:text-2xl font-light text-blue-100">온실가스 농도 급증과 기온 도약(Temperature Leap) 현상 분석</p>
+            <div class="mt-6 inline-block bg-white text-blue-900 px-6 py-2 rounded-full font-bold shadow-md">
+                분석 기간: 2020년 ~ 2024년
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-6xl mx-auto px-4 py-12 space-y-16">
+
+        <!-- Section 1: The 2023 Shock (Hook) -->
+        <section>
+            <div class="bg-white rounded-2xl shadow-xl p-8 border-l-8 border-red-500">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                    <div>
+                        <h2 class="text-3xl font-bold text-gray-800 mb-4">🚨 2023년: 기온의 '비선형적 도약'</h2>
+                        <p class="text-gray-600 text-lg leading-relaxed mb-6">
+                            과거 완만한 상승세를 깨고, 2023년 지구 평균 기온이 전년 대비 폭발적으로 상승했습니다. 이는 단순한 변동이 아닌, 기후 시스템이 <strong>임계점(Tipping Point)</strong>에 근접했음을 시사하는 강력한 신호입니다.
+                        </p>
+                        <ul class="space-y-3 text-gray-700">
+                            <li class="flex items-center">
+                                <span class="text-red-500 mr-2">●</span> 2022년 기온: 13.6°C
+                            </li>
+                            <li class="flex items-center font-bold text-red-600 bg-red-50 p-2 rounded">
+                                <span class="text-red-600 mr-2">●</span> 2023년 기온: 14.6°C (급등)
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="flex flex-col items-center justify-center p-6 bg-red-50 rounded-xl border border-red-100 text-center">
+                        <span class="text-red-600 font-bold text-xl uppercase tracking-widest mb-2">Year-over-Year Jump</span>
+                        <div class="text-8xl md:text-9xl font-black text-red-500 drop-shadow-sm leading-none">
+                            +1.0<span class="text-4xl">°C</span>
+                        </div>
+                        <p class="mt-4 text-red-800 font-medium">단 1년 만에 발생한 기록적 상승폭</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 2: The Drivers (GHG Trends) -->
+        <section>
+            <div class="mb-8 border-b-2 border-blue-200 pb-4">
+                <h2 class="text-3xl font-bold text-blue-900">1. 원인 분석: 멈추지 않는 온실가스</h2>
+                <p class="mt-2 text-gray-600">산업 활동과 화석 연료 사용으로 인해 대기 중 이산화탄소($CO_2$)와 메탄($CH_4$) 농도가 지속적으로 우상향 곡선을 그리고 있습니다.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- CO2 Chart Card -->
+                <div class="metric-card bg-white p-6 rounded-xl shadow-md">
+                    <h3 class="text-xl font-bold text-gray-800 mb-2 flex items-center">
+                        <span class="w-3 h-8 bg-blue-600 mr-2 rounded"></span>
+                        이산화탄소 ($CO_2$) 농도 추이
+                    </h3>
+                    <p class="text-sm text-gray-500 mb-6">매년 평균 2.6ppm씩 꾸준히 상승 중입니다.</p>
+                    <div class="chart-container">
+                        <canvas id="co2Chart"></canvas>
+                    </div>
+                    <div class="mt-4 bg-blue-50 p-3 rounded text-sm text-blue-800 text-center font-semibold">
+                        2024년 기준: 428.0 ppm 도달
+                    </div>
+                </div>
+
+                <!-- CH4 Chart Card -->
+                <div class="metric-card bg-white p-6 rounded-xl shadow-md">
+                    <h3 class="text-xl font-bold text-gray-800 mb-2 flex items-center">
+                        <span class="w-3 h-8 bg-purple-600 mr-2 rounded"></span>
+                        메탄 ($CH_4$) 농도 추이
+                    </h3>
+                    <p class="text-sm text-gray-500 mb-6">단기간 내 기온 상승을 유발하는 강력한 요인입니다.</p>
+                    <div class="chart-container">
+                        <canvas id="ch4Chart"></canvas>
+                    </div>
+                    <div class="mt-4 bg-purple-50 p-3 rounded text-sm text-purple-800 text-center font-semibold">
+                        5년간 약 50 ppb 급증
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 3: The Impact (Temperature) -->
+        <section>
+            <div class="mb-8 border-b-2 border-red-200 pb-4">
+                <h2 class="text-3xl font-bold text-gray-800">2. 결과: 가속화되는 지구 온난화</h2>
+                <p class="mt-2 text-gray-600">온실가스 누적 효과가 나타나며 지구 평균 기온이 계단식으로 상승하고 있습니다.</p>
+            </div>
+
+            <div class="bg-white p-8 rounded-xl shadow-lg">
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                    <div class="lg:col-span-2">
+                        <div class="chart-container" style="max-width: 100%;">
+                            <canvas id="tempChart"></canvas>
+                        </div>
+                    </div>
+                    <div class="flex flex-col justify-center space-y-6">
+                        <div class="bg-orange-50 p-6 rounded-lg border-l-4 border-orange-500">
+                            <h4 class="font-bold text-orange-900 text-lg mb-2">⚠️ 기온 도약 (Leap)</h4>
+                            <p class="text-orange-800 text-sm">
+                                2023년의 막대 그래프가 급격히 솟구친 것을 확인할 수 있습니다. 이는 기후 변화가 <strong>가속화 단계</strong>에 진입했음을 경고합니다.
+                            </p>
+                        </div>
+                        <div class="bg-gray-50 p-6 rounded-lg border-l-4 border-gray-400">
+                            <h4 class="font-bold text-gray-900 text-lg mb-2">📉 1.5°C 목표 위기</h4>
+                            <p class="text-gray-700 text-sm">
+                                현재 추세라면 향후 10년 내에 지구 온난화 제한 목표 달성이 불가능할 것으로 예측됩니다.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 4: Correlation Analysis -->
+        <section>
+            <div class="mb-8">
+                <h2 class="text-3xl font-bold text-gray-800">3. 심층 분석: 인과관계 확인</h2>
+                <p class="mt-2 text-gray-600">이산화탄소 농도와 기온 상승 사이에는 명확한 양(+)의 상관관계가 존재합니다.</p>
+            </div>
+            
+            <div class="bg-white p-8 rounded-xl shadow-md">
+                 <div class="chart-container" style="max-width: 800px;">
+                    <canvas id="scatterChart"></canvas>
+                </div>
+                <p class="text-center text-sm text-gray-500 mt-4">
+                    X축: 이산화탄소 농도 (ppm) / Y축: 지구 평균 기온 (°C)
+                </p>
+            </div>
+        </section>
+
+        <!-- Section 5: Recommendations -->
+        <section>
+            <div class="bg-gradient-to-br from-gray-900 to-gray-800 rounded-3xl p-10 text-white shadow-2xl">
+                <h2 class="text-3xl font-bold mb-8 text-center">🛡️ 위기 대응 전략 제언</h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <!-- Strategy 1 -->
+                    <div class="bg-white/10 backdrop-blur-sm p-6 rounded-xl border border-white/20 hover:bg-white/20 transition duration-300">
+                        <div class="text-4xl mb-4">⚡</div>
+                        <h3 class="text-xl font-bold text-blue-300 mb-3">에너지 전환 가속화</h3>
+                        <p class="text-gray-300 text-sm leading-relaxed">
+                            이산화탄소 농도 억제를 위해 화석 연료 의존도를 낮추고, 재생 에너지 비중을 비약적으로 확대해야 합니다.
+                        </p>
+                    </div>
+                    <!-- Strategy 2 -->
+                    <div class="bg-white/10 backdrop-blur-sm p-6 rounded-xl border border-white/20 hover:bg-white/20 transition duration-300">
+                        <div class="text-4xl mb-4">🏭</div>
+                        <h3 class="text-xl font-bold text-purple-300 mb-3">메탄 배출원 관리</h3>
+                        <p class="text-gray-300 text-sm leading-relaxed">
+                            축산업 및 에너지 산업에서 발생하는 메탄 누출을 차단하기 위한 즉각적인 모니터링 및 기술 도입이 시급합니다.
+                        </p>
+                    </div>
+                    <!-- Strategy 3 -->
+                    <div class="bg-white/10 backdrop-blur-sm p-6 rounded-xl border border-white/20 hover:bg-white/20 transition duration-300">
+                        <div class="text-4xl mb-4">🌲</div>
+                        <h3 class="text-xl font-bold text-green-300 mb-3">탄소 흡수원 보호</h3>
+                        <p class="text-gray-300 text-sm leading-relaxed">
+                            산림 보존을 통해 자연적 흡수 능력을 유지하고, 탄소 포집 기술(CCUS)에 대한 투자를 확대해야 합니다.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-gray-200 py-8 text-center text-gray-500 text-sm">
+        <p>Copyright © 2024 Climate Crisis Analytics Team.</p>
+        <p class="mt-2">Data Source: Global Warming Intensification Analysis Report (2020-2024)</p>
+    </footer>
+
+    <!-- Chart Scripts -->
+    <script>
+        // --- Data Preparation ---
+        const years = ['2020', '2021', '2022', '2023', '2024'];
+        
+        // Helper function for label wrapping (Mandatory 16-char logic)
+        function wrapLabel(label) {
+            if (typeof label !== 'string' || label.length <= 16) return label;
+            const words = label.split(' ');
+            const lines = [];
+            let currentLine = words[0];
+
+            for (let i = 1; i < words.length; i++) {
+                if ((currentLine + " " + words[i]).length <= 16) {
+                    currentLine += " " + words[i];
+                } else {
+                    lines.push(currentLine);
+                    currentLine = words[i];
+                }
+            }
+            lines.push(currentLine);
+            return lines;
+        }
+
+        // Processed labels (Not strictly needed for years "2020", but good practice to apply the wrapper)
+        const labels = years.map(year => wrapLabel(year));
+
+        // --- Common Chart Options ---
+        const commonOptions = {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                tooltip: {
+                    backgroundColor: 'rgba(0, 0, 0, 0.8)',
+                    titleFont: { size: 14 },
+                    bodyFont: { size: 13 },
+                    padding: 12,
+                    callbacks: {
+                        // MANDATORY TOOLTIP CONFIG
+                        title: function(tooltipItems) {
+                            const item = tooltipItems[0];
+                            let label = item.chart.data.labels[item.dataIndex];
+                            if (Array.isArray(label)) {
+                                return label.join(' ');
+                            } else {
+                                return label;
+                            }
+                        }
+                    }
+                },
+                legend: {
+                    labels: {
+                        font: { family: "'Noto Sans KR', sans-serif" }
+                    }
+                }
+            },
+            scales: {
+                x: {
+                    ticks: { font: { family: "'Noto Sans KR', sans-serif" } }
+                },
+                y: {
+                    ticks: { font: { family: "'Noto Sans KR', sans-serif" } }
+                }
+            }
+        };
+
+        // --- 1. CO2 Chart ($CO_2$) ---
+        const ctxCO2 = document.getElementById('co2Chart').getContext('2d');
+        new Chart(ctxCO2, {
+            type: 'line',
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: '이산화탄소 (ppm)',
+                    data: [417.6, 421.4, 422.8, 425.6, 428.0],
+                    borderColor: '#3B82F6', // Bright Blue
+                    backgroundColor: 'rgba(59, 130, 246, 0.1)',
+                    borderWidth: 3,
+                    pointBackgroundColor: '#1E3A8A',
+                    pointRadius: 5,
+                    fill: true,
+                    tension: 0.3
+                }]
+            },
+            options: {
+                ...commonOptions,
+                scales: {
+                    y: {
+                        min: 410, // Optimize scale to show trend
+                        title: { display: true, text: '농도 (ppm)' }
+                    }
+                }
+            }
+        });
+
+        // --- 2. CH4 Chart ($CH_4$) ---
+        const ctxCH4 = document.getElementById('ch4Chart').getContext('2d');
+        new Chart(ctxCH4, {
+            type: 'line',
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: '메탄 (ppb)',
+                    data: [1972, 1988, 2004, 2010, 2022],
+                    borderColor: '#9333EA', // Purple
+                    backgroundColor: 'rgba(147, 51, 234, 0.1)',
+                    borderWidth: 3,
+                    pointBackgroundColor: '#581C87',
+                    pointRadius: 5,
+                    fill: true,
+                    tension: 0.3
+                }]
+            },
+            options: {
+                ...commonOptions,
+                scales: {
+                    y: {
+                        min: 1960,
+                        title: { display: true, text: '농도 (ppb)' }
+                    }
+                }
+            }
+        });
+
+        // --- 3. Temperature Chart (Bar with Highlight) ---
+        const ctxTemp = document.getElementById('tempChart').getContext('2d');
+        // Define colors based on value to highlight 2023
+        const tempColors = ['#FCA5A5', '#FCA5A5', '#FCA5A5', '#EF4444', '#FCA5A5']; // 2023 is Red
+        
+        new Chart(ctxTemp, {
+            type: 'bar',
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: '지구 평균 기온 (°C)',
+                    data: [13.4, 13.5, 13.6, 14.6, 14.7],
+                    backgroundColor: tempColors,
+                    borderRadius: 8,
+                    barPercentage: 0.6
+                }]
+            },
+            options: {
+                ...commonOptions,
+                scales: {
+                    y: {
+                        min: 13.0,
+                        title: { display: true, text: '기온 (°C)' }
+                    }
+                },
+                plugins: {
+                    ...commonOptions.plugins,
+                    annotation: {
+                        // If we had annotation plugin, we would use it here. 
+                        // Instead, we used color highlighting.
+                    }
+                }
+            }
+        });
+
+        // --- 4. Scatter Plot (Correlation) ---
+        const ctxScatter = document.getElementById('scatterChart').getContext('2d');
+        new Chart(ctxScatter, {
+            type: 'scatter',
+            data: {
+                datasets: [{
+                    label: 'CO2 농도 vs 기온 상관관계',
+                    data: [
+                        { x: 417.6, y: 13.4 }, // 2020
+                        { x: 421.4, y: 13.5 }, // 2021
+                        { x: 422.8, y: 13.6 }, // 2022
+                        { x: 425.6, y: 14.6 }, // 2023
+                        { x: 428.0, y: 14.7 }  // 2024
+                    ],
+                    backgroundColor: '#EF4444', // Red dots
+                    pointRadius: 8,
+                    pointHoverRadius: 10
+                }]
+            },
+            options: {
+                ...commonOptions,
+                scales: {
+                    x: {
+                        title: { display: true, text: '이산화탄소 농도 (ppm)', font: {weight: 'bold'} },
+                        min: 415,
+                        max: 430
+                    },
+                    y: {
+                        title: { display: true, text: '지구 평균 기온 (°C)', font: {weight: 'bold'} },
+                        min: 13.0,
+                        max: 15.0
+                    }
+                },
+                plugins: {
+                    tooltip: {
+                        callbacks: {
+                            title: function() { return ''; }, // Hide title for scatter points
+                            label: function(context) {
+                                return `CO2: ${context.raw.x}ppm, 기온: ${context.raw.y}°C`;
+                            }
+                        }
+                    }
+                }
+            }
+        });
+
+    </script>
+</body>
+</html>ㅇㅇ
