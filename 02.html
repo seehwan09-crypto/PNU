@@ -47,6 +47,29 @@
         .metric-card:hover {
             transform: translateY(-5px);
         }
+        /* Home Button Styling */
+        .home-btn {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 50;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 45px;
+            height: 45px;
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            color: #1E3A8A;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        .home-btn:hover {
+            background-color: #1E3A8A;
+            color: white;
+            transform: scale(1.1);
+        }
     </style>
     <!-- 
     Palette Name: Fire & Ice (Vibrant Blue & Warning Red)
@@ -77,6 +100,11 @@
     <!-- NEITHER Mermaid JS NOR SVG were used anywhere in the output. -->
 </head>
 <body class="bg-gray-100">
+
+    <!-- Fixed Home Button -->
+    <a href="index.html" class="home-btn" title="홈으로 이동">
+        <span style="font-size: 24px; font-weight: bold;">⌂</span>
+    </a>
 
     <!-- Header Section -->
     <header class="bg-gradient-to-r from-blue-900 to-blue-700 text-white py-12 px-4 shadow-lg">
@@ -456,4 +484,4 @@
 
     </script>
 </body>
-</html>ㅇㅇ
+</html>
