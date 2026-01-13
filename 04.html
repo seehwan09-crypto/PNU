@@ -17,44 +17,47 @@
         .custom-scrollbar::-webkit-scrollbar-track { background: #f1f1f1; }
         .custom-scrollbar::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
         
-        /* Navigation Sticky Style */
         nav { transition: all 0.3s ease; }
-        .nav-scrolled { background: rgba(15, 23, 42, 0.9); backdrop-filter: blur(10px); }
+        .nav-scrolled { background: rgba(15, 23, 42, 0.95); backdrop-filter: blur(10px); }
     </style>
 </head>
 <body class="text-slate-800">
 
     <!-- Sticky Navigation -->
-    <nav class="fixed top-0 left-0 right-0 z-50 bg-slate-900/80 backdrop-blur-md border-b border-slate-700 h-[70px] flex items-center">
+    <nav class="fixed top-0 left-0 right-0 z-50 bg-slate-900 border-b border-slate-700 h-[70px] flex items-center">
         <div class="max-w-7xl mx-auto w-full px-6 flex justify-between items-center">
             <div class="flex items-center gap-2 text-white font-black text-xl">
-                <i class="fas fa-microscope text-indigo-400"></i>
-                <span>BIO-LAB</span>
+                <i class="fas fa-dna text-indigo-400"></i>
+                <span>BIO-COMPARISON</span>
             </div>
             <div class="hidden md:flex items-center gap-8 text-slate-300 text-sm font-semibold">
                 <a href="#hero" class="hover:text-white transition-colors">홈</a>
-                <a href="#stats" class="hover:text-white transition-colors">핵심지표</a>
-                <a href="#charts" class="hover:text-white transition-colors">데이터 시각화</a>
-                <a href="#table" class="hover:text-white transition-colors">대학 목록</a>
-                <a href="#insights" class="bg-indigo-600 text-white px-4 py-2 rounded-lg hover:bg-indigo-500 transition-all">분석 리포트</a>
+                <a href="#stats" class="hover:text-white transition-colors">주요수치</a>
+                <a href="#charts" class="hover:text-white transition-colors">데이터 분석</a>
+                <a href="#table" class="hover:text-white transition-colors">전체 목록</a>
+                <a href="#insights" class="bg-indigo-600 text-white px-4 py-2 rounded-lg hover:bg-indigo-500 transition-all">요약 리포트</a>
             </div>
         </div>
     </nav>
 
     <!-- Hero Section -->
-    <header id="hero" class="bg-gradient-to-br from-indigo-900 via-blue-900 to-slate-900 text-white py-20 px-6 relative overflow-hidden">
+    <header id="hero" class="bg-gradient-to-br from-slate-900 via-indigo-950 to-slate-900 text-white py-24 px-6 relative overflow-hidden">
         <div class="absolute inset-0 opacity-10 pointer-events-none">
             <svg width="100%" height="100%"><pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M 40 0 L 0 0 0 40" fill="none" stroke="white" stroke-width="1"/></pattern><rect width="100%" height="100%" fill="url(#grid)" /></svg>
         </div>
         <div class="max-w-6xl mx-auto relative z-10 text-center">
             <div class="inline-block bg-indigo-500/30 backdrop-blur-md border border-indigo-400/30 px-4 py-1 rounded-full text-xs font-bold mb-4 tracking-widest text-indigo-200">
-                LATEST STATISTICS 2025
+                2025 UNIVERSITY DATA REVISION
             </div>
-            <h1 class="text-4xl md:text-5xl font-extrabold mb-6 tracking-tight">생명과학과 대학별 실질 지표 비교</h1>
-            <p class="text-indigo-100 text-lg max-w-2xl mx-auto font-light mb-8">전국 주요 10개 대학의 경쟁률, 취업률, 등록금을 데이터로 분석합니다.</p>
+            <h1 class="text-4xl md:text-5xl font-extrabold mb-6 tracking-tight">전국 생명과학과 실질 데이터 분석</h1>
+            <p class="text-indigo-100 text-lg max-w-2xl mx-auto font-light mb-10 leading-relaxed">최신 업로드된 자료를 바탕으로 경쟁률, 취업률, 등록금을 비교 분석합니다.</p>
             <div class="flex flex-wrap justify-center gap-4">
-                <a href="#charts" class="bg-white text-slate-900 px-6 py-3 rounded-full font-bold shadow-lg hover:bg-slate-100 transition-all">시각화 차트 보기</a>
-                <a href="#table" class="bg-indigo-500/20 border border-indigo-400/30 px-6 py-3 rounded-full font-bold backdrop-blur-sm hover:bg-indigo-500/40 transition-all">상세 데이터 표</a>
+                <a href="#charts" class="bg-white text-slate-900 px-8 py-3 rounded-full font-bold shadow-xl hover:bg-slate-100 transition-all flex items-center gap-2">
+                    <i class="fas fa-chart-pie"></i> 시각화 리포트
+                </a>
+                <a href="#table" class="bg-indigo-500/20 border border-indigo-400/30 px-8 py-3 rounded-full font-bold backdrop-blur-sm hover:bg-indigo-500/40 transition-all flex items-center gap-2">
+                    <i class="fas fa-list"></i> 상세 수치 확인
+                </a>
             </div>
         </div>
     </header>
@@ -62,35 +65,45 @@
     <!-- Dashboard Main -->
     <main class="max-w-7xl mx-auto px-6 pb-20">
         
-        <!-- Quick Stats Banner -->
-        <div id="stats" class="grid grid-cols-1 md:grid-cols-4 gap-4 -mt-10 mb-16 relative z-20">
-            <div class="bg-white p-6 rounded-2xl shadow-xl border border-slate-100 flex items-center gap-4 hover:translate-y-[-4px] transition-all">
-                <div class="bg-blue-100 text-blue-600 p-3 rounded-xl"><i class="fas fa-chart-line text-xl"></i></div>
-                <div><p class="text-xs text-slate-500 font-bold uppercase">최고 경쟁률</p><p class="text-xl font-black">시립대 (33.2)</p></div>
+        <!-- Summary Dashboard -->
+        <div id="stats" class="grid grid-cols-1 md:grid-cols-4 gap-5 -mt-12 mb-20 relative z-20">
+            <div class="bg-white p-7 rounded-3xl shadow-xl border border-slate-100 hover:scale-105 transition-transform">
+                <div class="flex items-center gap-4">
+                    <div class="bg-blue-100 text-blue-600 w-12 h-12 flex items-center justify-center rounded-2xl"><i class="fas fa-fire text-lg"></i></div>
+                    <div><p class="text-xs text-slate-500 font-bold uppercase tracking-wider">최고 경쟁률</p><p class="text-2xl font-black">33.2 : 1</p></div>
+                </div>
+                <p class="mt-4 text-xs text-slate-400 font-semibold italic">서울시립대학교</p>
             </div>
-            <div class="bg-white p-6 rounded-2xl shadow-xl border border-slate-100 flex items-center gap-4 hover:translate-y-[-4px] transition-all">
-                <div class="bg-emerald-100 text-emerald-600 p-3 rounded-xl"><i class="fas fa-briefcase text-xl"></i></div>
-                <div><p class="text-xs text-slate-500 font-bold uppercase">최고 취업률</p><p class="text-xl font-black">성균관대 (65.5%)</p></div>
+            <div class="bg-white p-7 rounded-3xl shadow-xl border border-slate-100 hover:scale-105 transition-transform">
+                <div class="flex items-center gap-4">
+                    <div class="bg-emerald-100 text-emerald-600 w-12 h-12 flex items-center justify-center rounded-2xl"><i class="fas fa-user-check text-lg"></i></div>
+                    <div><p class="text-xs text-slate-500 font-bold uppercase tracking-wider">최고 취업률</p><p class="text-2xl font-black">57.1 %</p></div>
+                </div>
+                <p class="mt-4 text-xs text-slate-400 font-semibold italic">동국대학교</p>
             </div>
-            <div class="bg-white p-6 rounded-2xl shadow-xl border border-slate-100 flex items-center gap-4 hover:translate-y-[-4px] transition-all">
-                <div class="bg-orange-100 text-orange-600 p-3 rounded-xl"><i class="fas fa-coins text-xl"></i></div>
-                <div><p class="text-xs text-slate-500 font-bold uppercase">최저 등록금</p><p class="text-xl font-black">시립대 (259만)</p></div>
+            <div class="bg-white p-7 rounded-3xl shadow-xl border border-slate-100 hover:scale-105 transition-transform">
+                <div class="flex items-center gap-4">
+                    <div class="bg-orange-100 text-orange-600 w-12 h-12 flex items-center justify-center rounded-2xl"><i class="fas fa-won-sign text-lg"></i></div>
+                    <div><p class="text-xs text-slate-500 font-bold uppercase tracking-wider">최저 등록금</p><p class="text-2xl font-black">259 만원</p></div>
+                </div>
+                <p class="mt-4 text-xs text-slate-400 font-semibold italic">서울시립대학교</p>
             </div>
-            <div class="bg-white p-6 rounded-2xl shadow-xl border border-slate-100 flex items-center gap-4 hover:translate-y-[-4px] transition-all">
-                <div class="bg-indigo-100 text-indigo-600 p-3 rounded-xl"><i class="fas fa-users text-xl"></i></div>
-                <div><p class="text-xs text-slate-500 font-bold uppercase">최대 재학생</p><p class="text-xl font-black">중앙대 (266명)</p></div>
+            <div class="bg-white p-7 rounded-3xl shadow-xl border border-slate-100 hover:scale-105 transition-transform">
+                <div class="flex items-center gap-4">
+                    <div class="bg-indigo-100 text-indigo-600 w-12 h-12 flex items-center justify-center rounded-2xl"><i class="fas fa-school text-lg"></i></div>
+                    <div><p class="text-xs text-slate-500 font-bold uppercase tracking-wider">최대 학생수</p><p class="text-2xl font-black">266 명</p></div>
+                </div>
+                <p class="mt-4 text-xs text-slate-400 font-semibold italic">중앙대학교</p>
             </div>
         </div>
 
-        <!-- Chart Grid -->
-        <div id="charts" class="scroll-mt-24 grid lg:grid-cols-2 gap-8 mb-16">
-            <!-- Competition vs Employment -->
-            <div class="bg-white p-8 rounded-3xl shadow-sm border border-slate-100">
-                <div class="flex justify-between items-center mb-8">
-                    <h3 class="text-xl font-bold">취업률 vs 경쟁률 트렌드</h3>
-                    <div class="flex gap-2">
-                        <span class="w-3 h-3 rounded-full bg-indigo-500"></span>
-                        <span class="w-3 h-3 rounded-full bg-emerald-500"></span>
+        <!-- Charts Section -->
+        <div id="charts" class="scroll-mt-24 grid lg:grid-cols-2 gap-10 mb-20">
+            <div class="bg-white p-10 rounded-[2.5rem] shadow-sm border border-slate-100">
+                <div class="flex justify-between items-start mb-10">
+                    <div>
+                        <h3 class="text-2xl font-bold text-slate-900">경쟁률 및 취업률 상관관계</h3>
+                        <p class="text-sm text-slate-500 mt-1">대학별 성과 지표를 시계열 방식으로 분석합니다.</p>
                     </div>
                 </div>
                 <div class="chart-container">
@@ -98,11 +111,12 @@
                 </div>
             </div>
 
-            <!-- Tuition Comparison -->
-            <div class="bg-white p-8 rounded-3xl shadow-sm border border-slate-100">
-                <div class="flex justify-between items-center mb-8">
-                    <h3 class="text-xl font-bold">연간 평균 등록금 비교 (만원)</h3>
-                    <i class="fas fa-wallet text-slate-200 text-2xl"></i>
+            <div class="bg-white p-10 rounded-[2.5rem] shadow-sm border border-slate-100">
+                <div class="flex justify-between items-start mb-10">
+                    <div>
+                        <h3 class="text-2xl font-bold text-slate-900">연간 평균 등록금 순위</h3>
+                        <p class="text-sm text-slate-500 mt-1">단위: 만원 (반올림 기준)</p>
+                    </div>
                 </div>
                 <div class="chart-container">
                     <canvas id="tuitionChart"></canvas>
@@ -110,93 +124,93 @@
             </div>
         </div>
 
-        <!-- Data Table / List -->
-        <section id="table" class="scroll-mt-24 bg-white rounded-3xl shadow-sm border border-slate-100 overflow-hidden mb-16">
-            <div class="p-8 border-b border-slate-100 bg-slate-50/50 flex flex-col md:flex-row justify-between items-center gap-4">
+        <!-- Data Table Section -->
+        <section id="table" class="scroll-mt-24 bg-white rounded-[2.5rem] shadow-sm border border-slate-100 overflow-hidden mb-20">
+            <div class="p-10 border-b border-slate-100 bg-slate-50/50 flex flex-col md:flex-row justify-between items-center gap-6">
                 <div>
-                    <h3 class="text-xl font-bold">대학별 원본 데이터 리스트</h3>
-                    <p class="text-sm text-slate-500">실제 CSV 공시자료 수치입니다.</p>
+                    <h3 class="text-2xl font-bold text-slate-900">대학별 데이터 상세 현황</h3>
+                    <p class="text-sm text-slate-500 mt-1">총 7개 대학의 최신 데이터가 반영되었습니다.</p>
                 </div>
-                <div class="flex gap-2">
-                    <button class="px-4 py-2 bg-indigo-600 text-white text-xs font-bold rounded-lg shadow-md hover:bg-indigo-700 transition-all">데이터 다운로드 (CSV)</button>
+                <div class="flex gap-3">
+                    <button class="px-6 py-2.5 bg-slate-900 text-white text-xs font-bold rounded-xl shadow-lg hover:bg-slate-800 transition-all flex items-center gap-2">
+                        <i class="fas fa-file-export"></i> 엑셀 내보내기
+                    </button>
                 </div>
             </div>
             <div class="overflow-x-auto custom-scrollbar">
                 <table class="w-full text-left border-collapse">
                     <thead>
-                        <tr class="bg-slate-50 text-slate-500 text-xs uppercase tracking-wider">
-                            <th class="px-8 py-4 font-bold">대학명</th>
-                            <th class="px-8 py-4 font-bold">지역</th>
-                            <th class="px-8 py-4 font-bold text-center">경쟁률</th>
-                            <th class="px-8 py-4 font-bold text-center">취업률</th>
-                            <th class="px-8 py-4 font-bold text-right">평균등록금</th>
+                        <tr class="bg-slate-100/50 text-slate-600 text-[0.7rem] uppercase tracking-[0.2em] font-black">
+                            <th class="px-10 py-6">대학명</th>
+                            <th class="px-10 py-6 text-center">지역</th>
+                            <th class="px-10 py-6 text-center">경쟁률</th>
+                            <th class="px-10 py-6 text-center">취업률</th>
+                            <th class="px-10 py-6 text-right">평균등록금 (원)</th>
                         </tr>
                     </thead>
-                    <tbody class="divide-y divide-slate-100 text-sm">
-                        <!-- Data populated by JS -->
+                    <tbody class="divide-y divide-slate-100">
+                        <!-- Filled by JS -->
                     </tbody>
                 </table>
             </div>
         </section>
 
-        <!-- Insights -->
-        <section id="insights" class="scroll-mt-24 grid md:grid-cols-2 gap-6">
-            <div class="bg-indigo-50 p-8 rounded-3xl border border-indigo-100 hover:bg-indigo-100 transition-colors">
-                <h4 class="text-indigo-900 font-bold text-lg mb-4 flex items-center gap-2">
-                    <i class="fas fa-lightbulb text-indigo-500"></i> 취업 역량 핵심지표
-                </h4>
-                <p class="text-sm text-indigo-800 leading-relaxed">
-                    데이터 분석 결과, <strong>성균관대(65.5%)</strong>와 <strong>아주대(63.2%)</strong>가 가장 높은 취업률을 기록했습니다. 이는 학과 커리큘럼과 산학 연계 프로그램의 실질적 성과로 해석될 수 있습니다.
+        <!-- Qualitative Insights -->
+        <section id="insights" class="scroll-mt-24 grid md:grid-cols-2 gap-8">
+            <div class="group bg-indigo-600 p-10 rounded-[2.5rem] text-white hover:bg-indigo-700 transition-all cursor-default">
+                <div class="w-12 h-12 bg-indigo-400/30 rounded-2xl flex items-center justify-center mb-6">
+                    <i class="fas fa-lightbulb text-xl text-indigo-100"></i>
+                </div>
+                <h4 class="text-2xl font-bold mb-4">데이터 핵심 요약</h4>
+                <p class="text-indigo-100 leading-relaxed text-sm">
+                    최신 분석 결과, <strong>동국대학교</strong>가 57.1%로 가장 우수한 취업 성과를 보이고 있으며, <strong>서울시립대학교</strong>는 경쟁률(33.2)과 경제성(259만 원) 측면에서 압도적인 선호도를 보이고 있습니다.
                 </p>
             </div>
-            <div class="bg-slate-800 p-8 rounded-3xl text-white hover:bg-slate-700 transition-colors">
-                <h4 class="text-indigo-300 font-bold text-lg mb-4 flex items-center gap-2">
-                    <i class="fas fa-hand-holding-usd"></i> 경제적 학업 환경 분석
-                </h4>
-                <p class="text-sm text-slate-300 leading-relaxed">
-                    국공립 대학인 <strong>서울시립대(259만)</strong>는 타 사립대 평균 대비 약 70% 낮은 등록금을 유지하고 있습니다. 경쟁률이 33.2:1로 가장 높은 이유 중 하나는 이러한 압도적 경제적 혜택일 것입니다.
+            <div class="group bg-white p-10 rounded-[2.5rem] border border-slate-200 hover:border-indigo-200 transition-all cursor-default">
+                <div class="w-12 h-12 bg-slate-100 rounded-2xl flex items-center justify-center mb-6">
+                    <i class="fas fa-search-dollar text-xl text-slate-600"></i>
+                </div>
+                <h4 class="text-2xl font-bold mb-4 text-slate-900">가성비 분석</h4>
+                <p class="text-slate-500 leading-relaxed text-sm">
+                    국공립 대학인 <strong>부산대학교</strong>와 <strong>서울시립대학교</strong>는 평균 300~400만 원대의 등록금을 형성하여 사립대 대비 약 50% 이상의 비용 절감 효과가 있음을 확인할 수 있습니다.
                 </p>
             </div>
         </section>
     </main>
 
     <!-- Footer -->
-    <footer class="bg-slate-900 text-slate-500 py-16 px-6 text-center">
-        <div class="max-w-4xl mx-auto">
-            <div class="flex justify-center gap-6 mb-8 text-xl">
-                <a href="#" class="hover:text-indigo-400"><i class="fab fa-github"></i></a>
-                <a href="#" class="hover:text-indigo-400"><i class="fab fa-instagram"></i></a>
-                <a href="#" class="hover:text-indigo-400"><i class="fas fa-envelope"></i></a>
-            </div>
-            <p class="mb-2 text-xs uppercase tracking-widest font-bold">Source: ui1_data.xlsx - Sheet1.csv</p>
-            <p class="text-xs">© 2025 Bio-Department Data Lab. Created for Future Scientists.</p>
+    <footer class="bg-slate-900 text-slate-500 py-20 px-6 text-center">
+        <div class="max-w-4xl mx-auto border-t border-slate-800 pt-10">
+            <p class="mb-4 text-xs uppercase tracking-[0.3em] font-bold text-slate-400">Analysis Source: ui1_data (1).xlsx - Sheet1.csv</p>
+            <p class="text-[0.7rem] text-slate-600 leading-relaxed">
+                이 웹사이트는 제공된 통계 자료를 바탕으로 제작되었습니다.<br>
+                정확한 입시 정보는 각 대학교 입학처의 공시 자료를 반드시 확인하시기 바랍니다.
+            </p>
         </div>
     </footer>
 
     <script>
+        // Data from ui1_data (1).xlsx
         const rawData = [
-            { name: "가천대", region: "경기", comp: 24.5, students: 204, job: 50, tuition: 8532800 },
-            { name: "동국대", region: "경기", comp: 23.6, students: 146, job: 57.1, tuition: 8492947 },
-            { name: "부산대", region: "부산", comp: 7.2, students: 221, job: 37.9, tuition: 4364000 },
-            { name: "서강대", region: "서울", comp: 19.1, students: 232, job: 48, tuition: 8887950 },
-            { name: "서울시립대", region: "서울", comp: 33.2, students: 174, job: 50, tuition: 2590000 },
-            { name: "성균관대", region: "경기", comp: 0, students: 194, job: 65.5, tuition: 8464000 },
-            { name: "아주대", region: "경기", comp: 0, students: 146, job: 63.2, tuition: 8238000 },
-            { name: "이화여대", region: "서울", comp: 14.5, students: 67, job: 0, tuition: 9099000 },
-            { name: "중앙대", region: "서울", comp: 30.1, students: 266, job: 40.6, tuition: 8379000 },
-            { name: "한양대", region: "서울", comp: 22.9, students: 239, job: 30, tuition: 8629638 }
+            { name: "가천대학교", region: "경기", comp: 24.5, job: 50, tuition: 8532800 },
+            { name: "동국대학교", region: "경기", comp: 23.6, job: 57.1, tuition: 8492947 },
+            { name: "부산대학교", region: "부산", comp: 7.2, job: 37.9, tuition: 4364000 },
+            { name: "서강대학교", region: "서울", comp: 19.1, job: 48, tuition: 8887950 },
+            { name: "서울시립대학교", region: "서울", comp: 33.2, job: 50, tuition: 2590000 },
+            { name: "중앙대학교", region: "서울", comp: 30.1, job: 40.6, tuition: 8379000 },
+            { name: "한양대학교", region: "서울", comp: 22.9, job: 30, tuition: 8629638 }
         ];
 
-        // Populate Table
+        // Fill Table
         const tbody = document.querySelector('tbody');
         rawData.forEach(d => {
             const row = `
-                <tr class="hover:bg-slate-50 transition-colors">
-                    <td class="px-8 py-5 font-bold text-slate-900">${d.name}</td>
-                    <td class="px-8 py-5 text-slate-500">${d.region}</td>
-                    <td class="px-8 py-5 text-center font-semibold text-indigo-600">${d.comp > 0 ? d.comp : '-'}</td>
-                    <td class="px-8 py-5 text-center font-semibold text-emerald-600">${d.job > 0 ? d.job + '%' : '-'}</td>
-                    <td class="px-8 py-5 text-right font-mono text-slate-700">${d.tuition.toLocaleString()}원</td>
+                <tr class="hover:bg-slate-50/80 transition-colors">
+                    <td class="px-10 py-6 font-bold text-slate-900">${d.name}</td>
+                    <td class="px-10 py-6 text-center text-slate-500 text-sm font-medium">${d.region}</td>
+                    <td class="px-10 py-6 text-center font-bold text-indigo-600">${d.comp.toFixed(1)}</td>
+                    <td class="px-10 py-6 text-center font-bold text-emerald-600">${d.job.toFixed(1)}%</td>
+                    <td class="px-10 py-6 text-right font-mono text-slate-700 font-semibold">${Math.round(d.tuition).toLocaleString()}</td>
                 </tr>
             `;
             tbody.innerHTML += row;
@@ -208,6 +222,7 @@
         const jobData = rawData.map(d => d.job);
         const tuitionData = rawData.map(d => Math.round(d.tuition / 10000));
 
+        // Line Chart for Competition & Employment
         new Chart(document.getElementById('mainChart'), {
             type: 'line',
             data: {
@@ -220,8 +235,9 @@
                         backgroundColor: 'rgba(99, 102, 241, 0.1)',
                         fill: true,
                         tension: 0.4,
-                        borderWidth: 3,
-                        pointRadius: 4
+                        borderWidth: 4,
+                        pointRadius: 6,
+                        pointHoverRadius: 10
                     },
                     {
                         label: '취업률 (%)',
@@ -230,46 +246,55 @@
                         backgroundColor: 'rgba(16, 185, 129, 0.1)',
                         fill: true,
                         tension: 0.4,
-                        borderWidth: 3,
-                        pointRadius: 4
+                        borderWidth: 4,
+                        pointRadius: 6,
+                        pointHoverRadius: 10
                     }
                 ]
             },
             options: {
                 responsive: true,
                 maintainAspectRatio: false,
-                plugins: { legend: { position: 'bottom' } },
-                scales: { y: { beginAtZero: true, grid: { color: '#f1f5f9' } }, x: { grid: { display: false } } }
+                plugins: {
+                    legend: { position: 'bottom', labels: { font: { size: 12, weight: 'bold' }, padding: 20 } }
+                },
+                scales: {
+                    y: { beginAtZero: true, grid: { color: '#f1f5f9' }, border: { display: false } },
+                    x: { grid: { display: false }, ticks: { font: { size: 11 } } }
+                }
             }
         });
 
+        // Bar Chart for Tuition
         new Chart(document.getElementById('tuitionChart'), {
             type: 'bar',
             data: {
                 labels: labels,
                 datasets: [{
-                    label: '평균 등록금(만원)',
+                    label: '연간 등록금(만원)',
                     data: tuitionData,
                     backgroundColor: tuitionData.map(v => v < 500 ? '#f59e0b' : '#6366f1'),
-                    borderRadius: 8,
-                    barThickness: 25
+                    borderRadius: 12,
+                    barThickness: 35
                 }]
             },
             options: {
                 responsive: true,
                 maintainAspectRatio: false,
-                plugins: { legend: { display: false } },
+                plugins: {
+                    legend: { display: false }
+                },
                 scales: { 
-                    y: { beginAtZero: true, grid: { color: '#f1f5f9' } },
-                    x: { grid: { display: false }, ticks: { font: { size: 10 } } }
+                    y: { beginAtZero: true, grid: { color: '#f1f5f9' }, border: { display: false } },
+                    x: { grid: { display: false }, ticks: { font: { size: 11 } } }
                 }
             }
         });
 
-        // Simple scroll spy effect for nav
+        // Nav Scroll Effect
         window.addEventListener('scroll', () => {
             const nav = document.querySelector('nav');
-            if (window.scrollY > 50) {
+            if (window.scrollY > 20) {
                 nav.classList.add('nav-scrolled');
             } else {
                 nav.classList.remove('nav-scrolled');
