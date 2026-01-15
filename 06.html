@@ -49,12 +49,51 @@
             margin-top: 8px;
             border-radius: 2px;
         }
+
+        /* Floating Home Button Style - Positioned Top Right */
+        .home-btn {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 48px;
+            height: 48px;
+            background-color: rgba(59, 130, 246, 0.9);
+            color: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(5px);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+        }
+
+        .home-btn.visible {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .home-btn:hover {
+            background-color: #2563eb;
+            transform: scale(1.05);
+            box-shadow: 0 6px 20px rgba(37, 99, 235, 0.3);
+        }
     </style>
 </head>
 <body class="text-slate-900">
 
+    <!-- Floating Home Button (Top Right) -->
+    <a href="#hero" id="homeBtn" class="home-btn" title="홈으로 이동">
+        <i class="fas fa-home text-xl"></i>
+    </a>
+
     <!-- Hero Section -->
-    <section class="gradient-hero text-white py-20 px-6 relative overflow-hidden">
+    <section id="hero" class="gradient-hero text-white py-20 px-6 relative overflow-hidden">
         <div class="max-w-6xl mx-auto relative z-10">
             <div class="inline-block px-4 py-1 rounded-full bg-blue-500/20 border border-blue-500/30 text-blue-400 text-sm font-bold mb-6">
                 종합 분석 리포트 2026
@@ -249,6 +288,19 @@
             <i class="fas fa-scale-balanced"></i>
         </div>
     </footer>
+
+    <script>
+        // Home button visibility logic
+        const homeBtn = document.getElementById('homeBtn');
+        window.onscroll = function() {
+            // Hero 섹션을 벗어났을 때(약 300px 스크롤 시) 버튼 표시
+            if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
+                homeBtn.classList.add('visible');
+            } else {
+                homeBtn.classList.remove('visible');
+            }
+        };
+    </script>
 
 </body>
 </html>
